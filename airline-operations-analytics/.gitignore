@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+top_airports.csv
+carrier_volume.csv
+carrier_delay.csv
+.DS_Store
+.env
+*.pem
+*.key
+credentials*
