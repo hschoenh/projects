@@ -2,7 +2,7 @@
 
 ![Projects Repository](_assets/projects-banner.png)
 
-This repository is used to store technical projects for demos, anonymous proof-of-concepts, test cases, and reusable reference solutions.
+This repository is used to store technical projects for demos, anonymous proof-of-concepts, test cases, and reusable reference solutions i want to share public.
 
 The goal is to centrally collect proven approaches, sample implementations, and technical assets so they can be reused for future use cases.
 
