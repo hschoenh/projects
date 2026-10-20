@@ -3,10 +3,9 @@
 Suggested exercise section:
 
 1. Business Value: Airline Operations Analytics
-2. Why Cloudera Data Services
-3. Architecture: From Raw Data to Decision
-4. Demo | From Raw Dataset to Insight
-5. Demo Result | Three Questions, Three Decisions
+2. Architecture: From Raw Data to Decision
+3. Demo | From Raw Dataset to Insight
+4. Demo Result | Three Questions, Three Decisions
 
 Key results:
 
