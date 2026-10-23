@@ -1,25 +1,25 @@
-# PHP-Konfiguration sicher prüfen
+# Secure PHP Configuration Check
 
-`phpinfo-check.php` ist eine temporäre, mit einem Zugriffsschlüssel geschützte Diagnosedatei. Sie zeigt PHP-Version, SAPI, aktive Konfigurationswerte und geladene Module an.
+`phpinfo-check.php` is a temporary diagnostic file protected by an access key. It displays the PHP version, SAPI, active configuration values, and loaded modules.
 
 ## Installation
 
-1. `phpinfo-check.php` in das Webverzeichnis von LakeDiver hochladen.
-2. Die Datei ausschließlich über HTTPS aufrufen:
+1. Upload `phpinfo-check.php` to the web root of your domain.
+2. Open the file over HTTPS only:
 
    ```text
-   https://lakediver.ch/phpinfo-check.php?key=382ab51086bd921710383a57fe28010da364eacb47818869
+   https://<yourdomain.com>/phpinfo-check.php?key=382ab51086bd921710383a57fe28010da364eacb47818869
    ```
 
-3. Nach der Prüfung `phpinfo-check.php` sofort wieder vom Server löschen.
+3. Delete `phpinfo-check.php` from the server immediately after completing the check.
 
-Ohne den korrekten Schlüssel antwortet das Skript mit HTTP 404. Suchmaschinen werden über `X-Robots-Tag` ausgeschlossen und die Antwort darf nicht zwischengespeichert werden.
+Without the correct access key, the script returns HTTP 404. The `X-Robots-Tag` header prevents search engine indexing, and cache headers prevent the response from being stored by the browser or an intermediary cache.
 
-## Zu prüfende Werte
+## Values to verify
 
-| Einstellung | Erwarteter Wert |
+| Setting | Expected value |
 |---|---|
-| PHP Version | 8.5.12 oder neuer |
+| PHP Version | 8.5.12 or newer |
 | Server API | FPM/FastCGI |
 | `display_errors` | Off |
 | `log_errors` | On |
@@ -30,21 +30,21 @@ Ohne den korrekten Schlüssel antwortet das Skript mit HTTP 404. Suchmaschinen w
 | `session.cookie_secure` | On |
 | `session.cookie_httponly` | On |
 
-Bei PHP-Konfigurationswerten zeigt `phpinfo()` häufig einen lokalen und einen globalen Wert. Für die Domain ist der lokale Wert maßgeblich, sofern die Einstellung dort überschrieben werden darf.
+`phpinfo()` often displays both a local value and a master value. The local value applies to the domain when the setting can be overridden at domain or directory level.
 
-## Datenschutz und Sicherheit
+## Privacy and security
 
-Das Skript verwendet bewusst nicht `INFO_ALL`. Die Bereiche `INFO_ENVIRONMENT` und `INFO_VARIABLES` werden ausgeschlossen, damit Umgebungsvariablen, Cookies und Request-Header nicht angezeigt werden.
+The script deliberately does not use `INFO_ALL`. It excludes `INFO_ENVIRONMENT` and `INFO_VARIABLES` so that environment variables, cookies, and request headers are not displayed.
 
-Trotz Zugriffsschutz bleiben folgende Risiken:
+The following risks remain despite the access key:
 
-- Der Schlüssel erscheint in Browser-Verlauf und Server-Access-Log.
-- Die Ausgabe enthält detaillierte Informationen über PHP, Module, Dateipfade und Serverkonfiguration.
-- Die Datei darf nicht dauerhaft auf einem öffentlich erreichbaren Server liegen.
+- The key appears in the browser history and the web server access log.
+- The output contains detailed information about PHP, loaded modules, file paths, and server configuration.
+- The file must not remain permanently on a publicly accessible server.
 
-## Ergebnis kompakt abfragen
+## Minimum result to record
 
-Für die Sicherheitsprüfung werden mindestens diese Angaben benötigt:
+Record at least the following values:
 
 ```text
 PHP Version: 8.5.x
@@ -53,4 +53,4 @@ display_errors: Off
 expose_php: Off
 ```
 
-Nach Übernahme der Werte die Browserseite schließen und die Diagnosedatei vom Server entfernen.
+After recording the values, close the browser tab and remove the diagnostic file from the server.
